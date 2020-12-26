@@ -1,4 +1,4 @@
-package com.training.entity;
+package com.training.hr.entity;
 
 
 
@@ -11,27 +11,27 @@ import java.util.Set;
         ,catalog="hr"
 )
 
-public class Countries  implements java.io.Serializable {
+public class Country implements java.io.Serializable {
 
 
     private String countryId;
-    private Regions regions;
+    private Region region;
     private String countryName;
-    private Set<Locations> locationses = new HashSet<Locations>(0);
+    private Set<Location> locations = new HashSet<Location>(0);
 
-    public Countries() {
+    public Country() {
     }
 
 
-    public Countries(String countryId, Regions regions) {
+    public Country(String countryId, Region region) {
         this.countryId = countryId;
-        this.regions = regions;
+        this.region = region;
     }
-    public Countries(String countryId, Regions regions, String countryName, Set<Locations> locationses) {
+    public Country(String countryId, Region region, String countryName, Set<Location> locations) {
         this.countryId = countryId;
-        this.regions = regions;
+        this.region = region;
         this.countryName = countryName;
-        this.locationses = locationses;
+        this.locations = locations;
     }
 
     @Id
@@ -48,12 +48,12 @@ public class Countries  implements java.io.Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="region_id", nullable=false)
-    public Regions getRegions() {
-        return this.regions;
+    public Region getRegions() {
+        return this.region;
     }
 
-    public void setRegions(Regions regions) {
-        this.regions = regions;
+    public void setRegions(Region region) {
+        this.region = region;
     }
 
 
@@ -67,12 +67,12 @@ public class Countries  implements java.io.Serializable {
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="countries")
-    public Set<Locations> getLocationses() {
-        return this.locationses;
+    public Set<Location> getLocationses() {
+        return this.locations;
     }
 
-    public void setLocationses(Set<Locations> locationses) {
-        this.locationses = locationses;
+    public void setLocationses(Set<Location> locations) {
+        this.locations = locations;
     }
 
 

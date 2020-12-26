@@ -1,4 +1,4 @@
-package com.training.entity;
+package com.training.hr.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -10,32 +10,32 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name="locations"
         ,catalog="hr"
 )
-public class Locations  implements java.io.Serializable {
+public class Location implements java.io.Serializable {
 
 
     private Integer locationId;
-    private Countries countries;
+    private Country country;
     private String streetAddress;
     private String postalCode;
     private String city;
     private String stateProvince;
-    private Set<Departments> departmentses = new HashSet<Departments>(0);
+    private Set<Department> departments = new HashSet<Department>(0);
 
-    public Locations() {
+    public Location() {
     }
 
 
-    public Locations(Countries countries, String city) {
-        this.countries = countries;
+    public Location(Country country, String city) {
+        this.country = country;
         this.city = city;
     }
-    public Locations(Countries countries, String streetAddress, String postalCode, String city, String stateProvince, Set<Departments> departmentses) {
-        this.countries = countries;
+    public Location(Country country, String streetAddress, String postalCode, String city, String stateProvince, Set<Department> departments) {
+        this.country = country;
         this.streetAddress = streetAddress;
         this.postalCode = postalCode;
         this.city = city;
         this.stateProvince = stateProvince;
-        this.departmentses = departmentses;
+        this.departments = departments;
     }
 
     @Id
@@ -53,12 +53,12 @@ public class Locations  implements java.io.Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="country_id", nullable=false)
-    public Countries getCountries() {
-        return this.countries;
+    public Country getCountries() {
+        return this.country;
     }
 
-    public void setCountries(Countries countries) {
-        this.countries = countries;
+    public void setCountries(Country country) {
+        this.country = country;
     }
 
 
@@ -102,12 +102,12 @@ public class Locations  implements java.io.Serializable {
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="locations")
-    public Set<Departments> getDepartmentses() {
-        return this.departmentses;
+    public Set<Department> getDepartmentses() {
+        return this.departments;
     }
 
-    public void setDepartmentses(Set<Departments> departmentses) {
-        this.departmentses = departmentses;
+    public void setDepartmentses(Set<Department> departments) {
+        this.departments = departments;
     }
 
 

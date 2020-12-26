@@ -1,4 +1,4 @@
-package com.training.entity;
+package com.training.hr.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -8,24 +8,24 @@ import java.util.Set;
 @Table(name="jobs"
         ,catalog="hr"
 )
-public class Jobs  implements java.io.Serializable {
+public class Job implements java.io.Serializable {
 
 
     private String jobId;
     private String jobTitle;
     private Integer minSalary;
     private Integer maxSalary;
-    private Set<Employees> employeeses = new HashSet<Employees>(0);
+    private Set<Employee> employeeses = new HashSet<Employee>(0);
 
-    public Jobs() {
+    public Job() {
     }
 
 
-    public Jobs(String jobId, String jobTitle) {
+    public Job(String jobId, String jobTitle) {
         this.jobId = jobId;
         this.jobTitle = jobTitle;
     }
-    public Jobs(String jobId, String jobTitle, Integer minSalary, Integer maxSalary, Set<Employees> employeeses) {
+    public Job(String jobId, String jobTitle, Integer minSalary, Integer maxSalary, Set<Employee> employeeses) {
         this.jobId = jobId;
         this.jobTitle = jobTitle;
         this.minSalary = minSalary;
@@ -76,11 +76,11 @@ public class Jobs  implements java.io.Serializable {
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="jobs")
-    public Set<Employees> getEmployeeses() {
+    public Set<Employee> getEmployeeses() {
         return this.employeeses;
     }
 
-    public void setEmployeeses(Set<Employees> employeeses) {
+    public void setEmployeeses(Set<Employee> employeeses) {
         this.employeeses = employeeses;
     }
 

@@ -1,4 +1,4 @@
-package com.training;
+package com.training.hr;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

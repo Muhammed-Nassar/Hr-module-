@@ -1,4 +1,4 @@
-package com.training.entity;
+package com.training.hr.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,13 +10,13 @@ import java.util.Set;
 @Table(name="employees"
         ,catalog="hr"
 )
-public class Employees  implements java.io.Serializable {
+public class Employee implements java.io.Serializable {
 
 
     private int employeeId;
-    private Departments departments;
-    private Employees employees;
-    private Jobs jobs;
+    private Department department;
+    private Employee employee;
+    private Job job;
     private String firstName;
     private String lastName;
     private String email;
@@ -24,26 +24,26 @@ public class Employees  implements java.io.Serializable {
     private Date hireDate;
     private BigDecimal salary;
     private BigDecimal commissionPct;
-    private Set<Departments> departmentses = new HashSet<Departments>(0);
-    private Set<Employees> employeeses = new HashSet<Employees>(0);
+    private Set<Department> departments = new HashSet<Department>(0);
+    private Set<Employee> employeeses = new HashSet<Employee>(0);
 
-    public Employees() {
+    public Employee() {
     }
 
 
-    public Employees(int employeeId, Jobs jobs, String lastName, String email, Date hireDate, BigDecimal salary) {
+    public Employee(int employeeId, Job job, String lastName, String email, Date hireDate, BigDecimal salary) {
         this.employeeId = employeeId;
-        this.jobs = jobs;
+        this.job = job;
         this.lastName = lastName;
         this.email = email;
         this.hireDate = hireDate;
         this.salary = salary;
     }
-    public Employees(int employeeId, Departments departments, Employees employees, Jobs jobs, String firstName, String lastName, String email, String phoneNumber, Date hireDate, BigDecimal salary, BigDecimal commissionPct, Set<Departments> departmentses, Set<Employees> employeeses) {
+    public Employee(int employeeId, Department department, Employee employee, Job job, String firstName, String lastName, String email, String phoneNumber, Date hireDate, BigDecimal salary, BigDecimal commissionPct, Set<Department> departmentses, Set<Employee> employeeses) {
         this.employeeId = employeeId;
-        this.departments = departments;
-        this.employees = employees;
-        this.jobs = jobs;
+        this.department = department;
+        this.employee = employee;
+        this.job = job;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -51,13 +51,13 @@ public class Employees  implements java.io.Serializable {
         this.hireDate = hireDate;
         this.salary = salary;
         this.commissionPct = commissionPct;
-        this.departmentses = departmentses;
+        this.departments = departmentses;
         this.employeeses = employeeses;
     }
 
     @Id
 
-
+    @
     @Column(name="employee_id", unique=true, nullable=false)
     public int getEmployeeId() {
         return this.employeeId;
@@ -69,32 +69,32 @@ public class Employees  implements java.io.Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="department_id")
-    public Departments getDepartments() {
-        return this.departments;
+    public Department getDepartments() {
+        return this.department;
     }
 
-    public void setDepartments(Departments departments) {
-        this.departments = departments;
+    public void setDepartments(Department department) {
+        this.department = department;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="manager_id")
-    public Employees getEmployees() {
-        return this.employees;
+    public Employee getEmployees() {
+        return this.employee;
     }
 
-    public void setEmployees(Employees employees) {
-        this.employees = employees;
+    public void setEmployees(Employee employee) {
+        this.employee = employee;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="job_id", nullable=false)
-    public Jobs getJobs() {
-        return this.jobs;
+    public Job getJobs() {
+        return this.job;
     }
 
-    public void setJobs(Jobs jobs) {
-        this.jobs = jobs;
+    public void setJobs(Job job) {
+        this.job = job;
     }
 
 
@@ -168,20 +168,20 @@ public class Employees  implements java.io.Serializable {
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="employees")
-    public Set<Departments> getDepartmentses() {
-        return this.departmentses;
+    public Set<Department> getDepartmentses() {
+        return this.departments;
     }
 
-    public void setDepartmentses(Set<Departments> departmentses) {
-        this.departmentses = departmentses;
+    public void setDepartmentses(Set<Department> departments) {
+        this.departments = departments;
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="employees")
-    public Set<Employees> getEmployeeses() {
+    public Set<Employee> getEmployeeses() {
         return this.employeeses;
     }
 
-    public void setEmployeeses(Set<Employees> employeeses) {
+    public void setEmployeeses(Set<Employee> employeeses) {
         this.employeeses = employeeses;
     }
 

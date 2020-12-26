@@ -1,4 +1,4 @@
-package com.training.entity;
+package com.training.hr.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -8,21 +8,21 @@ import java.util.Set;
 @Table(name="regions"
         ,catalog="hr"
 )
-public class Regions  implements java.io.Serializable {
+public class Region implements java.io.Serializable {
 
 
     private int regionId;
     private String regionName;
-    private Set<Countries> countrieses = new HashSet<Countries>(0);
+    private Set<Country> countrieses = new HashSet<Country>(0);
 
-    public Regions() {
+    public Region() {
     }
 
 
-    public Regions(int regionId) {
+    public Region(int regionId) {
         this.regionId = regionId;
     }
-    public Regions(int regionId, String regionName, Set<Countries> countrieses) {
+    public Region(int regionId, String regionName, Set<Country> countrieses) {
         this.regionId = regionId;
         this.regionName = regionName;
         this.countrieses = countrieses;
@@ -51,11 +51,11 @@ public class Regions  implements java.io.Serializable {
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="regions")
-    public Set<Countries> getCountrieses() {
+    public Set<Country> getCountrieses() {
         return this.countrieses;
     }
 
-    public void setCountrieses(Set<Countries> countrieses) {
+    public void setCountrieses(Set<Country> countrieses) {
         this.countrieses = countrieses;
     }
 

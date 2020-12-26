@@ -1,4 +1,4 @@
-package com.training.entity;
+package com.training.hr.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -8,27 +8,27 @@ import java.util.Set;
 @Table(name="departments"
         ,catalog="hr"
 )
-public class Departments  implements java.io.Serializable {
+public class Department implements java.io.Serializable {
 
 
     private int departmentId;
-    private Employees employees;
-    private Locations locations;
+    private Employee employee;
+    private Location location;
     private String departmentName;
-    private Set<Employees> employeeses = new HashSet<Employees>(0);
+    private Set<Employee> employeeses = new HashSet<Employee>(0);
 
-    public Departments() {
+    public Department() {
     }
 
 
-    public Departments(int departmentId, String departmentName) {
+    public Department(int departmentId, String departmentName) {
         this.departmentId = departmentId;
         this.departmentName = departmentName;
     }
-    public Departments(int departmentId, Employees employees, Locations locations, String departmentName, Set<Employees> employeeses) {
+    public Department(int departmentId, Employee employee, Location location, String departmentName, Set<Employee> employeeses) {
         this.departmentId = departmentId;
-        this.employees = employees;
-        this.locations = locations;
+        this.employee = employee;
+        this.location = location;
         this.departmentName = departmentName;
         this.employeeses = employeeses;
     }
@@ -47,22 +47,22 @@ public class Departments  implements java.io.Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="manager_id")
-    public Employees getEmployees() {
-        return this.employees;
+    public Employee getEmployees() {
+        return this.employee;
     }
 
-    public void setEmployees(Employees employees) {
-        this.employees = employees;
+    public void setEmployees(Employee employee) {
+        this.employee = employee;
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="location_id")
-    public Locations getLocations() {
-        return this.locations;
+    public Location getLocations() {
+        return this.location;
     }
 
-    public void setLocations(Locations locations) {
-        this.locations = locations;
+    public void setLocations(Location location) {
+        this.location = location;
     }
 
 
@@ -76,11 +76,11 @@ public class Departments  implements java.io.Serializable {
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="departments")
-    public Set<Employees> getEmployeeses() {
+    public Set<Employee> getEmployeeses() {
         return this.employeeses;
     }
 
-    public void setEmployeeses(Set<Employees> employeeses) {
+    public void setEmployeeses(Set<Employee> employeeses) {
         this.employeeses = employeeses;
     }
 

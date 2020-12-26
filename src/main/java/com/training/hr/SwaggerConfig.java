@@ -1,4 +1,4 @@
-package com.training;
+package com.training.hr;
 
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.RequestHandlerSelectors;
