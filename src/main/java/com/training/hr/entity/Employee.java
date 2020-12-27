@@ -56,8 +56,6 @@ public class Employee implements java.io.Serializable {
     }
 
     @Id
-
-    @
     @Column(name="employee_id", unique=true, nullable=false)
     public int getEmployeeId() {
         return this.employeeId;

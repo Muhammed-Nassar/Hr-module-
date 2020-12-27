@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/lookup")
+@RequestMapping("/api/lookups")
 public class LookupsController {
     @Autowired
     CountryService countryService;
@@ -28,7 +28,13 @@ public class LookupsController {
 
     }
 
-    @GetMapping("/countries/{name}")
+
+    @GetMapping("/countries/{id}")
+    public Country getCountryByID(@PathVariable String id) {
+        return countryService.findById(id);
+    }
+
+    @GetMapping("/countries/search/{name}")
     public List<Country> searchCountry(@PathVariable String name) {
 
         return countryService.findByName(name);
@@ -43,6 +49,7 @@ public class LookupsController {
 
     @DeleteMapping("/countries")
     public void deleteCountry(@RequestParam String id) {
+
         countryService.deleteCountry(id);
     }
 
@@ -60,9 +67,14 @@ public class LookupsController {
         return departmentService.getList();
     }
 
-    @GetMapping("/departments/{name}")
+    @GetMapping("/departments/search/{name}")
     public List<Department> searchDepartment(@PathVariable String name) {
         return departmentService.findByName(name);
+    }
+
+    @GetMapping("/departments/{id}")
+    public ResponseEntity<Department> findByDepartmentId(@PathVariable int id) {
+        return  new ResponseEntity(departmentService.findById(id),HttpStatus.OK);
     }
 
     @PostMapping("/departments")

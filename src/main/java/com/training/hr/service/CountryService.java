@@ -1,11 +1,13 @@
 package com.training.hr.service;
 
 import com.training.hr.entity.Country;
+import com.training.hr.exception.ResourceNotFoundException;
 import com.training.hr.repository.CountryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class CountryService {
@@ -14,12 +16,12 @@ public class CountryService {
 
     public Country addCountry(Country country) {
 
-       return  countryRepo.save(country);
+        return countryRepo.save(country);
     }
 
     public Country updateCountry(Country country) {
 
-       return countryRepo.save(country);
+        return countryRepo.save(country);
     }
 
     public void deleteCountry(String id) {
@@ -28,13 +30,14 @@ public class CountryService {
     }
 
     public Country findById(String id) {
-        return countryRepo.findById(id).orElseThrow(null);
+        return countryRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Country not found  with id :" + id));
 
     }
 
     public List<Country> findByName(String name) {
 
-        return countryRepo.findByCountryName(name);
+        return countryRepo.findByCountryNameContaining(name);
     }
 
     public List<Country> getList() {

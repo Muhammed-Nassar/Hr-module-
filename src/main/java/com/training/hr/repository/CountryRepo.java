@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface CountryRepo  extends JpaRepository<Country,String> {
 //Custom method using attribute must be exist in the entity (the same name "countryName")
-    public List<Country> findByCountryName(String countryName);
+    public List<Country> findByCountryNameContaining(String countryName);
     }
 
